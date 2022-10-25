@@ -1,0 +1,51 @@
+{% include 'main.html' %}
+
+{% block content %}
+
+
+
+<div class="hero">
+	<div class="container">
+
+		<h1>Welcome To ASAP Cab services</h1>
+
+		<p>Please login or create an account to book a cab. For more information contact us through our contact page.</p>
+        <p>admin--username-admin, password-admin</p>
+	</div>
+</div>
+<h1 id="About"></h1>
+<section class="container content">
+    
+	<h2>About Us</h2>
+	<p>The main objective of this project is to develop a web application for Cab booking
+        solution for students. We are solving the problem of waiting cabs around
+        universities for students by starting the service near every university and providing
+        them a web-based application where they can book a cab online and get the ride
+        booked within minutes. Students can save some money by opting for the
+        subscription plan based on monthly/semester or yearly and the facility to ride
+        together (Carpool). We also provide car rental services where students can get a
+        car at pointed location and gives an edge to leave the car at the nearest destination
+        cab center
+    </p>
+
+	</section>
+<h1 id="Contact"></h1>
+<section id="Contact">
+    <div class="container">
+        <h3>Contact Us</h3>
+        <p>
+            Please send any comments, feedback or queries in the form below
+        </p>
+        <form action="https://formspree.io/f/mlezbzwq" method="POST">
+        <fieldset>
+            <input type="text" name="name" placeholder="Enter your name or registration number" id="">
+            <input type="email" name="_replyto" placeholder="Enter your email" id="">
+            <textarea name="message" id="" placeholder="Enter message" cols="10" rows="10"></textarea>
+            <button>Send</button>
+            <input type="hidden" name="_confirmation" value="Thank you for contacting Us!">
+        </fieldset>
+        </form>
+    </div>
+
+</section>
+{% endblock content%}

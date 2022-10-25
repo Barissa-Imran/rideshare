@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= "{% static 'css/main.css' %}"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  	color: #222222;
+  	font-family: 'Open Sans', sans-serif;
+  	padding-bottom: 50px;
+}
+	
+.container {
+  	margin: 0 auto;
+  	max-width: 1200px;
+}
+
+.nav {
+  	background-color: #222222;
+  	left: 0;
+  	position: fixed;
+  	right: 0;
+  	top: 0;
+  	transition: all 0.3s ease-in-out;
+}
+
+.nav .container {
+  	align-items: center;
+  	display: flex;
+  	justify-content: space-between;
+  	padding: 20px 0;
+  	transition: all 0.3s ease-in-out;
+}
+
+.nav ul {
+  	align-items: center;
+  	display: flex;
+  	justify-content: center;
+  	list-style-type: none;
+}
+
+.nav a {
+  	color: #FFFFFF;
+  	padding: 7px 15px;
+  	text-decoration: none;
+  	transition: all 0.3s ease-in-out;
+}
+
+.nav.active {
+  	background-color: #222222;
+  	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav.active a {
+  	color: #FFFFFF;
+}
+
+.nav.active .container {
+  padding: 10px 0;
+}
+
+.nav a.current,
+.nav a:hover {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.hero {
+  	align-items: center;
+  	background-image: url('https://images.pexels.com/photos/450035/pexels-photo-450035.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  	background-position: bottom center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	color: #FFFFFF;
+  	display: flex;
+  	height: 100vh;
+  	justify-content: center;
+  	margin-bottom: 20px;
+  	position: relative;
+  	text-align: center;
+ 	z-index: -2;
+}
+
+.hero::before {
+  	background-color: rgba(0, 0, 0, 0.5);
+  	content: '';
+  	height: 100%;
+  	left: 0;
+  	position: absolute;
+  	top: 0;
+  	width: 100%;
+  	z-index: -1;
+}
+
+.hero h1 {
+  	font-size: 46px;
+  	margin: -20px 0 20px;
+}
+
+.hero p {
+  	font-size: 20px;
+  	letter-spacing: 1px;
+}
+
+.content h2,
+.content h3 {
+  	font-size: 150%;
+  	margin: 20px 0;
+}
+
+.content p {
+  	color: #555555;
+  	letter-spacing: 1.2px;
+  	line-height: 30px;
+}
+
+section {
+    display: block;
+    padding-top: 0px;
+
+}
+.container{
+    width: 970px;
+    margin: auto;     
+    padding-top: 75px;
+}
+.container h3{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+ .overlay{
+     width: 100%;
+     height: 100%;
+     background-color: rgba(14, 6, 124, 0.5);
+ }
+ .tag-line{
+     position: absolute;
+     top: 50%;
+     width: 100%;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bolder;
+    color: #ccc;
+    text-transform: uppercase;
+    opacity: 0.5;
+ }
+#Contact{
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+#Contact fieldset{
+    width: 80%;
+    margin: auto;
+    background: #eee;
+    padding: 20px;
+    box-shadow: 0 0 4px #ccc;
+}
+#Contact p{
+    text-align: center;
+    margin-bottom: 10px;
+}
+#registration input{
+ height: 30px;
+ margin-top: 10px;
+ border-radius: 5px;
+ border: 2px #ccc solid;
+}
+#Contact input,
+#Contact textarea{
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px #ccc solid;
+    border-radius: 5px;   
+    height: 40px;
+}
+#Contact textarea{
+    height: 200px;
+}
+#Contact button{
+    width: 100%;
+    height: 40px;
+}
+#Contact button:hover{
+   background-color: rgb(51, 51, 51);
+   color: #fff;
+   cursor: pointer;
+}
+input,
+textarea,
+section,
+button {
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+}
+
+input[type ="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+}
+
+input,
+textarea,
+button {
+    border: 1px solid rgb(87, 122, 145);
+}
+button {
+    padding: 0.75em 1em;
+    border-radius: 4px;
+    line-height: inherit;
+    background-color: transparent;
+}
+
+
+
+    </style>
+    
+    <title>Home</title>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <h1 class="logo"><a href="">ASAP Cab Services</a></h1>
+            <ul>
+                <li><a href="{% url 'home' %}" class="current">Home</a></li>
+                <li><a href="">Available Rides</a></li>
+                <li><a href="#">Book a ride</a></li>
+                <li><a href="#Contact">Contact Us</a></li>
+                <li><a href="{% url 'login' %}">{{user.username}}</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="hero">
+        <div class="container">
+            <h1>Welcome To ASAP Cab services</h1>
+            <h1>THIS SECTION WILL BE DONE IN PHASE 2 & 3</h1>
+              </div>
+    </div>
+    <h1 id="About"></h1>
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
