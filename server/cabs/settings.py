@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import datetime
 import os
-import django_heroku
-import dj_database_url
+# import django_heroku
+# import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-iz4&=#e3pl-q&84(m7hh5_&ysoadh-adt#lf$*^9h^-h#6#nmq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,8 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'base',
+    # Developemnt
+    'rest_framework',
+    'channels',
     'crispy_forms',
+
+    # my apps
+    # 'base',
+    'trips',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +83,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cabs.wsgi.application'
 
+ASGI_APPLICATION = 'cabs.routing.application'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -87,6 +96,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'trips.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -132,14 +142,45 @@ STATICFILES_DIRS =   [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Static files config
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
 
-django_heroku.settings(locals())
+MEDIA_URL = '/media/'
 
+MEDIA_ROOT = Path(BASE_DIR / 'media')
+
+# django_heroku.settings(locals())
+
+# Email config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'email address to be used '
 EMAIL_HOST_PASSWORD = 'password'
+
+REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379')
+
+# channels config
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [REDIS_URL]
+        },
+    },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
+SIMPLE_JWT = {
+    'ACESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    'USER_ID_CLAIM': 'id',
+}
