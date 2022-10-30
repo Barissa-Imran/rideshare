@@ -5,4 +5,4 @@ class RentalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rental
         fields = '__all__'
-        read_only_fields = ('id',)
+        read_only_fields = ('id', 'created', 'updated',)
