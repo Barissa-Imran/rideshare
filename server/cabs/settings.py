@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # my apps
     # 'base',
     'trips',
+    'rental'
 ]
 
 MIDDLEWARE = [
