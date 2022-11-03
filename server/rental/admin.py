@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Rental
+from .models import Rental , Email
 from django.contrib.auth.admin import UserAdmin as DefaultUserAdmin
 
 
@@ -20,4 +20,9 @@ class RentalAdmin(admin.ModelAdmin):
     )
     readonly_fields = (
         'id', 'created', 'updated',
+    )
+@admin.register(Email)
+class EmailAdmin(admin.ModelAdmin):
+    fields = (
+        'email',
     )
