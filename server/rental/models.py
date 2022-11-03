@@ -33,3 +33,10 @@ class Rental(models.Model):
  
 def __str__(self):
     return "{}".format(self.user)
+
+
+class Email(models.Model):
+    email = models.EmailField(max_length=254)
+            
+    def __str__(self):
+        return "{}".format(self.email)
