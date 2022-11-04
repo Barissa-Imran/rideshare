@@ -17,6 +17,9 @@ import {
     LOGOUT
 } from './/type';
 
+
+// REACT_APP_API_URL = 'http://localhost:8000'
+
 export const load_user = () => async dispatch => {
     if (localStorage.getItem('access')) {
         const config = {
@@ -28,7 +31,7 @@ export const load_user = () => async dispatch => {
         }; 
 
         try {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/log_in/`, config);
     
             dispatch({
                 type: USER_LOADED_SUCCESS,
@@ -58,7 +61,7 @@ export const checkAuthenticated = () => async dispatch => {
         const body = JSON.stringify({ token: localStorage.getItem('access') });
 
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/verify/`, body, config)
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/token/refresh/`, body, config)
 
             if (res.data.code !== 'token_not_valid') {
                 dispatch({
@@ -92,7 +95,7 @@ export const login = (email, password) => async dispatch => {
     const body = JSON.stringify({ email, password });
 
     try {
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/create/`, body, config);
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/log_in/`, body, config);
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -107,6 +110,7 @@ export const login = (email, password) => async dispatch => {
     }
 };
 
+
 export const signup = (first_name, last_name, email, password, re_password) => async dispatch => {
     const config = {
         headers: {
@@ -117,7 +121,7 @@ export const signup = (first_name, last_name, email, password, re_password) => a
     const body = JSON.stringify({ first_name, last_name, email, password, re_password });
 
     try {
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body, config);
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/sign_up/`, body, config);
 
         dispatch({
             type: SIGNUP_SUCCESS,
@@ -140,7 +144,7 @@ export const verify = (uid, token) => async dispatch => {
     const body = JSON.stringify({ uid, token });
 
     try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/activation/`, body, config);
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/token/refresh/`, body, config);
 
         dispatch({
             type: ACTIVATION_SUCCESS,
