@@ -60,7 +60,7 @@ const Header = () => {
                   <Link to="/home" className=" d-flex align-items-center gap-2">
                     <i class="ri-car-line"></i>
                     <span>
-                      Book Ride or Rent Car <br /> Service
+                      Asap car services
                     </span>
                   </Link>
                 </h1>

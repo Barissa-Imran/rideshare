@@ -12,22 +12,27 @@ import Signup from "../pages/Signup";
 import ResetPassword from "../pages/ResetPassword";
 import ResetpasswordConfirm from "../pages/ResetpasswordConfirm";
 import Activate from "../pages/Activate";
+import Rideshare from "../pages/Rideshare";
 const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/home" />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/rental" element={<Rental/>} />
+      <Route path="/rental" element={<Rental />} />
       <Route path="/about" element={<About />} />
       <Route path="/cars" element={<CarListing />} />
       <Route path="/cars/:slug" element={<CarDetails />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/login" element={<Login/>} />
-      <Route path="/signup" element={<Signup/>} />
-      <Route path="/reset-password" element={<ResetPassword/>} />
-      <Route path="/password/reset/confirm/:uid/:token" element={<ResetpasswordConfirm/>} />
-      <Route path="/activate/:uid/:token" element={<Activate/>} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route
+        path="/password/reset/confirm/:uid/:token"
+        element={<ResetpasswordConfirm />}
+      />
+      <Route path="/activate/:uid/:token" element={<Activate />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/rideshare" element={<Rideshare />} />
     </Routes>
   );
 };
