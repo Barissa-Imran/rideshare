@@ -24,8 +24,13 @@ const HeroSliderHome = () => {
           <div className="slider__content ">
             <h4 className="text-light mb-3">Book Ride or rent Car</h4>
             <h1 className="text-light mb-4">Ride Booking and Rental Services</h1>
+
           </div>
 
+          <button className="btn reserve__btn mt-4">
+            <Link to="/rideshare">Book a ride  </Link>
+          </button>
+          <br />
           <button className="btn reserve__btn mt-4">
               <Link to="/login">LOGIN  </Link>
             </button>
@@ -43,7 +48,10 @@ const HeroSliderHome = () => {
             <h4 className="text-light mb-3">Book Ride or Rent Car</h4>
             <h1 className="text-light mb-4">Ride Booking and Car Rental Services</h1>
           </div>
-
+          <button className="btn reserve__btn mt-4">
+            <Link to="/rideshare">Book a ride  </Link>
+          </button>
+          <br />
           <button className="btn reserve__btn mt-4">
               <Link to="/login">LOGIN</Link>
             </button>
@@ -61,6 +69,10 @@ const HeroSliderHome = () => {
             <h1 className="text-light mb-4">Ride Booking and Rental Services</h1>
           </div>
 
+          <button className="btn reserve__btn mt-4">
+            <Link to="/rideshare">Book a ride  </Link>
+          </button>
+          <br />
           <button className="btn reserve__btn mt-4">
               <Link to="/login">LOGIN  </Link>
             </button>
