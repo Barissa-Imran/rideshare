@@ -17,8 +17,7 @@ import {
     LOGOUT
 } from './/type';
 
-
-// REACT_APP_API_URL = 'http://localhost:8000'
+let REACT_APP_API_URL = 'http://localhost:8000'
 
 export const load_user = () => async dispatch => {
     if (localStorage.getItem('access')) {
@@ -31,7 +30,7 @@ export const load_user = () => async dispatch => {
         }; 
 
         try {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/log_in/`, config);
+            const res = await axios.get('{}/api/log_in/'.format(REACT_APP_API_URL), config);
     
             dispatch({
                 type: USER_LOADED_SUCCESS,
