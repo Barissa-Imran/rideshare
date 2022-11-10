@@ -39,13 +39,14 @@ export const AuthProvider = ({ children }) => {
       setAuthTokens(data);
       setUser(jwt_decode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
-      navigate('/', {replace: true});
+      navigate('/home');
+      alert("Redirecting to home page!");
     } else {
       alert("Something went wrong!");
     }
   };
-  
-  const registerUser = async (username, password, password2) => {
+ 
+  const registerUser = async (username, password1,password2) => {
     const response = await fetch("http://127.0.0.1:8000/api/sign_up/", {
       method: "POST",
       headers: {
@@ -53,12 +54,13 @@ export const AuthProvider = ({ children }) => {
       },
       body: JSON.stringify({
         username,
-        password,
+        password1,
         password2
       })
     });
     if (response.status === 201) {
-      navigate('/login', {replace: true});
+      navigate('/login');
+      alert("Redirecting to login page!");
     } else {
       alert("Something went wrong!");
     }

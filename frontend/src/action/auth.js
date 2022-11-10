@@ -15,7 +15,7 @@ import {
     ACTIVATION_SUCCESS,
     ACTIVATION_FAIL,
     LOGOUT
-} from './/type';
+} from './/types';
 
 let REACT_APP_API_URL = 'http://localhost:8000'
 

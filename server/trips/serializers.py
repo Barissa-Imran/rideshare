@@ -9,7 +9,7 @@ from .models import Trip
 class UserSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
-    group = serializers.CharField()
+    group = serializers.CharField(default='rider')
 
     def validate(self, data):
         if data['password1'] != data['password2']:

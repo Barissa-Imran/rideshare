@@ -6,16 +6,15 @@ import AuthContext from '../action/AuthContext';
 const Signup = () => {
 
     const [username, setUsername]  = useState("");
-    const [password, setPassword] = useState("");
+    const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
     const {registerUser} = useContext(AuthContext);
     
     const handleSubmit = async e => {
         e.preventDefault();
-        registerUser(username, password,password2);
-
+        console.log(e.target.value)
+        registerUser(username, password1,password2);
     };
-
   return (
     <div className='container mt-5'>
     <h1>Sign Up</h1>
@@ -33,15 +32,13 @@ const Signup = () => {
             />
         </div>
         <br />
-        <br />
-        <br />
         <div className='form-group'>
             <input
                 className='form-control'
-                type='password'
-                id='password'
+                type='password1'
+                id='password1'
                 placeholder='Password*'
-                onChange={e => setPassword(e.target.value)}
+                onChange={e => setPassword1(e.target.value)}
                 required
             />
         </div>
@@ -55,8 +52,9 @@ const Signup = () => {
                 onChange={e => setPassword2(e.target.value)}
                 required
             />
-            <p>{password2 !== password ? "Passwords do not match" : ""}</p>
+            <p>{password2 !== password1 ? "Passwords do not match" : ""}</p>
         </div>
+        <br />
         <br />
         <button className='btn btn-primary' type='submit'>Register</button>
     </form>

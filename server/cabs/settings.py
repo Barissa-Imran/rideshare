@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'channels',
     'crispy_forms',
+    'corsheaders',
 
     # my apps
     # 'base',
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -126,6 +128,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+CORS_ALLOW_ALL_ORIGINS = True
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
