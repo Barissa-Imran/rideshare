@@ -1,50 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
+import { useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { signup } from '../action/auth';
-import { connect } from 'react-redux';
+import AuthContext from '../action/AuthContext';
 
-const Signup = ({ signup, isAuthenticated }) => {
-    const [accountCreated, setAccountCreated] = useState(false);
-    const [formData, setFormData] = useState({
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-        re_password: ''
-    });
+const Signup = () => {
 
-    const { first_name, last_name, email, password, re_password } = formData;
-
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    const onSubmit = e => {
+    const [username, setUsername]  = useState("");
+    const [password1, setPassword1] = useState("");
+    const [password2, setPassword2] = useState("");
+    const {registerUser} = useContext(AuthContext);
+    
+    const handleSubmit = async e => {
         e.preventDefault();
-
-        if (password === re_password) {
-            signup(first_name, last_name, email, password, re_password);
-            setAccountCreated(true);
-        }
+        console.log(e.target.value)
+        registerUser(username, password1,password2);
     };
-    if (isAuthenticated) {
-        return <Navigate to='/' />
-    }
-    if (accountCreated) {
-        return <Navigate to='/login' />
-    }
-
   return (
     <div className='container mt-5'>
     <h1>Sign Up</h1>
     <p>Create your Account</p>
-    <form onSubmit={e => onSubmit(e)}>
+    <form onSubmit={handleSubmit}>
         <div className='form-group'>
             <input
                 className='form-control'
                 type='text'
-                placeholder='First Name*'
+                id='username'
+                onChange={e => setUsername(e.target.value)}
+                placeholder='Username*'
                 name='first_name'
-                value={first_name}
-                onChange={e => onChange(e)}
                 required
             />
         </div>
@@ -52,36 +35,10 @@ const Signup = ({ signup, isAuthenticated }) => {
         <div className='form-group'>
             <input
                 className='form-control'
-                type='text'
-                placeholder='Last Name*'
-                name='last_name'
-                value={last_name}
-                onChange={e => onChange(e)}
-                required
-            />
-        </div>
-        <br />
-        <div className='form-group'>
-            <input
-                className='form-control'
-                type='email'
-                placeholder='Email*'
-                name='email'
-                value={email}
-                onChange={e => onChange(e)}
-                required
-            />
-        </div>
-        <br />
-        <div className='form-group'>
-            <input
-                className='form-control'
-                type='password'
+                type='password1'
+                id='password1'
                 placeholder='Password*'
-                name='password'
-                value={password}
-                onChange={e => onChange(e)}
-                minLength='6'
+                onChange={e => setPassword1(e.target.value)}
                 required
             />
         </div>
@@ -90,14 +47,14 @@ const Signup = ({ signup, isAuthenticated }) => {
             <input
                 className='form-control'
                 type='password'
+                id='confirm-password'
                 placeholder='Confirm Password*'
-                name='re_password'
-                value={re_password}
-                onChange={e => onChange(e)}
-                minLength='6'
+                onChange={e => setPassword2(e.target.value)}
                 required
             />
+            <p>{password2 !== password1 ? "Passwords do not match" : ""}</p>
         </div>
+        <br />
         <br />
         <button className='btn btn-primary' type='submit'>Register</button>
     </form>
@@ -111,8 +68,4 @@ const Signup = ({ signup, isAuthenticated }) => {
   );
 };
 
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(mapStateToProps, { signup })(Signup);
+export default Signup
