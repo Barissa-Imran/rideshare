@@ -5,16 +5,16 @@ import AuthContext from "../../action/AuthContext";
 import { useState, useContext } from "react";
 const BookingForm = () => {
   const [email, setEmail]  = useState("");
-  const [model, setModel] = useState("");
-  const [location, setLocation] = useState("");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [car_model, setModel] = useState("");
+  const [pickup_location, setLocation] = useState("");
+  const [from_date, setFrom] = useState("");
+  const [to_date, setTo] = useState("");
+ 
   const {rentCar} = useContext(AuthContext);
 
   const submitHandler = async e => {
     e.preventDefault();
-    console.log(e.target.value)
-    rentCar(email, model, location, from, to);
+    rentCar(email, car_model, pickup_location, from_date, to_date);
 };
   return (
     <Form onSubmit={submitHandler}>
@@ -49,7 +49,7 @@ const BookingForm = () => {
         <p>From Date</p>
       </FormGroup>
       <FormGroup className="booking__form d-inline-block me-4 mb-4">
-        <input  placeholder="From Date" type="date" 
+        <input  placeholder="From Date:Format (YYYY-MM-DD)"
         onChange={e => setFrom(e.target.value)}
         />
       </FormGroup>
@@ -58,8 +58,7 @@ const BookingForm = () => {
       </FormGroup>
       <FormGroup className="booking__form d-inline-block ms-1 mb-4">
         <input
-         placeholder="To Date"
-         type="date"
+         placeholder="To Date:Format (YYYY-MM-DD)"
          onChange={e => setTo(e.target.value)}
         />
       </FormGroup>

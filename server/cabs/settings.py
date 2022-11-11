@@ -130,6 +130,20 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_HEADERS = [
+    "authentication",
+    "authorization",
+    "content-type",
+    "origin",
+    "accept",
+    "accept-encoding",
+    "dnt",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -189,14 +203,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         #commented out for simplicity
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     )
 }
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=1),
     #commented out for simplicity
-    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=2),
+    # 'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=2),
     # 'USER_ID_CLAIM': 'id',
 }
 
