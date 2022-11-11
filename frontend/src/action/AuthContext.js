@@ -66,6 +66,29 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const rentCar = async (email, model, location, from, to) => {
+    const response = await fetch("http://127.0.0.1:8000/api/rental/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization":localStorage.getItem("authTokens")
+      },
+      body: JSON.stringify({
+        email,
+        from,
+        model,
+        location,
+        to
+      })
+    });
+    if (response.status === 201) {
+      navigate('/');
+      alert("Redirecting to Home page!");
+    } else {
+      alert("Something went wrong!");
+    }
+  };
+
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
@@ -80,7 +103,8 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens,
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    rentCar
   };
 
   useEffect(() => {
