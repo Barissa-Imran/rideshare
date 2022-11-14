@@ -113,6 +113,23 @@ const CarDetails = () => {
                 <BookingForm />
               </div>
             </Col>
+          {/* <Col lg="7" className="mt-5">
+            <h6 className="rent__price fw-bold fs-4">
+                    Select this car below and reserve it
+            </h6>
+            <br />
+            <select>
+                  <option>Select</option>
+                  <option value="Tesla Malibu">Tesla Malibu</option>
+                  <option value="Toyota Aventador">Toyota Aventador</option>
+                  <option value="BMWX3">BMWX3</option>
+                  <option value="Nissan Mercielago">Nissan Mercielago</option>
+                  <option value="Ferrari Camry">Ferrari Camry</option>
+                  <option value="Mercedes Benz XC90">Mercedes Benz XC90</option>
+                </select>
+           
+          </Col> */}
+
 
             <Col lg="5" className="mt-5">
               <div className="payment__info mt-5">
