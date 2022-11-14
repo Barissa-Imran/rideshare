@@ -66,6 +66,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+
   const rentCar = async (email, car_model, pickup_location, from_date, to_date) => {
     const response = await fetch("http://127.0.0.1:8000/api/rental/", {
       method: "POST",
@@ -90,6 +92,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
@@ -104,8 +107,12 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens,
     registerUser,
     loginUser,
+
+    
+
     logoutUser,
     rentCar
+
   };
 
   useEffect(() => {
