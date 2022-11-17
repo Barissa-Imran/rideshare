@@ -8,7 +8,9 @@
   box-sizing: border-box;
   font-family: "Source Sans Pro", sans-serif;
 }
-
+.pac-container {
+    z-index: 1100 !important;
+}
 /* ========= pre-define css ========= */
 h1,
 h2,

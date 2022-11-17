@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/booking-form.css";
 import { Form, FormGroup } from "reactstrap";
+import { Autocomplete } from "@react-google-maps/api";
 
 const BookingForm = () => {
   const submitHandler = (event) => {
