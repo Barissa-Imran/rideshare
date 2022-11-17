@@ -10,21 +10,15 @@ import store from "./store";
 import { AuthProvider } from "./action/AuthContext";
 // import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from "react-router-dom";
-import { ChakraProvider, theme } from "@chakra-ui/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme} />
-  
-    {/* <Provider store={store}> */}
       <Router>
       <AuthProvider>
+        {/* <Component isComponent={true} /> */}
         <App />
         </AuthProvider>
       </Router>
-    {/* </Provider> */}
-   
-    <ChakraProvider />
   </React.StrictMode>
 );
