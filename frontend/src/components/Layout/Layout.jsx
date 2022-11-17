@@ -3,20 +3,21 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Routers from "../../routers/Routers";
 import { connect } from 'react-redux';
-import { checkAuthenticated, load_user } from '../../action/auth';
-
-const Layout = ({ checkAuthenticated, load_user, children }) => {
-  useEffect(() => {
-    checkAuthenticated();
-    load_user();
-}, []);
+import { layout } from "@chakra-ui/react";
+// import { checkAuthenticated, load_user } from '../../action/auth';
+//{checkAuthenticated, load_user, children}
+const Layout = () => {
+//   useEffect(() => {
+//     checkAuthenticated();
+//     load_user();
+// }, []);
 
   return (
     <Fragment>
       <Header />
       <div>
         <Routers />
-        {children}
+        {/* {children} */}
       </div>
       <Footer />
     </Fragment>
@@ -24,4 +25,6 @@ const Layout = ({ checkAuthenticated, load_user, children }) => {
 };
 
 
-export default connect(null, { checkAuthenticated, load_user })(Layout);
+// export default connect(null, { checkAuthenticated, load_user })(Layout);
+
+export default Layout

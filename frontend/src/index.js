@@ -7,22 +7,18 @@ import "remixicon/fonts/remixicon.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import store from "./store";
-import { Provider } from 'react-redux';
+import { AuthProvider } from "./action/AuthContext";
+// import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from "react-router-dom";
-import { ChakraProvider, theme } from "@chakra-ui/react";
-import Test from "./pages/Test"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme} />
-
-    {/* <Provider store={store}> */}
       <Router>
+      <AuthProvider>
+        {/* <Component isComponent={true} /> */}
         <App />
+        </AuthProvider>
       </Router>
-    {/* </Provider> */}
-
-    <ChakraProvider />
   </React.StrictMode>
 );

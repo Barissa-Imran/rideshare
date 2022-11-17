@@ -9,7 +9,7 @@ from .models import Trip
 class UserSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
-    group = serializers.CharField()
+    group = serializers.CharField(default='rider')
 
     def validate(self, data):
         if data['password1'] != data['password2']:
@@ -43,10 +43,15 @@ class LogInSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-        user_data = UserSerializer(user).data
-        for key, value in user_data.items():
-            if key != 'id':
-                token[key] = value
+        # user_data = UserSerializer(user).data
+        # for key, value in user_data.items():
+        #     if key != 'id':
+        #         token[key] = value
+        # return token
+
+        #testing custom claim
+        token['username'] = user.username
+
         return token
 
 

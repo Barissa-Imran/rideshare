@@ -1,42 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext} from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { login } from '../action/auth';
+import AuthContext from '../action/AuthContext';
 
+const Login = () => {
 
-const Login = ({ login, isAuthenticated }) => {
-
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '' 
-    });
-
-    const { email, password } = formData;
-
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    const onSubmit = e => {
+    const {loginUser} = useContext(AuthContext)
+    const handleSubmit = e => {
         e.preventDefault();
-
-        login(email, password);
-    };
-    if (isAuthenticated) {
-        return <Navigate to='/' />
+        const username = e.target.username.value;
+        const password = e.target.password.value;
+        username.length > 0 && loginUser(username, password);
     }
+    
     return (
         <div className='container mt-5'>
             <h1>Sign In</h1>
-            <p>Sign into your Account</p>
-            <form onSubmit={e => onSubmit(e)}>
+            <form onSubmit={handleSubmit}>
                 <div className='form-group'>
                     <input
                         className='form-control'
-                        type='email'
-                        placeholder='Email'
-                        name='email'
-                        value={email}
-                        onChange={e => onChange(e)}
-                        required
+                        type='text'
+                        id='username'
+                        placeholder='Username'
+                        name='username'
                     />
                 </div>
                 <br />
@@ -44,12 +30,9 @@ const Login = ({ login, isAuthenticated }) => {
                     <input
                         className='form-control'
                         type='password'
+                        id='password'
                         placeholder='Password'
                         name='password'
-                        value={password}
-                        onChange={e => onChange(e)}
-                        minLength='6'
-                        required
                     />
                 </div>
                 <br/>
@@ -61,17 +44,12 @@ const Login = ({ login, isAuthenticated }) => {
                 <p className='mt-3'>
                     Don't have an account? <Link to='/signup'>Sign Up</Link>
                 </p>
-                <p className='mt-3'>
+                {/* <p className='mt-3'>
                     Forgot your Password? <Link to='/reset-password'>Reset Password</Link>
-                </p>
-
+                </p> */}
             </div>
     )
 }
 
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-});
 
-
-export default connect(mapStateToProps, { login })(Login);
+export default Login
