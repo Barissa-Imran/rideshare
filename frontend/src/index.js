@@ -10,16 +10,19 @@ import store from "./store";
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from "react-router-dom";
 import { ChakraProvider, theme } from "@chakra-ui/react";
+import Test from "./pages/Test"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ChakraProvider theme={theme} />
-    <Provider store={store}>
+
+    {/* <Provider store={store}> */}
       <Router>
         <App />
       </Router>
-    </Provider>
+    {/* </Provider> */}
+
     <ChakraProvider />
   </React.StrictMode>
 );
