@@ -210,3 +210,6 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 
+SITE_URL = 'http://localhost:3000'
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+

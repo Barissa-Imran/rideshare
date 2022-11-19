@@ -1,4 +1,3 @@
-from email import message
 from django.db import models
 from trips.models import User
 import uuid
@@ -29,14 +28,16 @@ class Rental(models.Model):
     updated = models.DateTimeField(auto_now=True)
     from_date = models.DateTimeField()
     to_date = models.DateTimeField()
-    paid = models.BooleanField()
- 
+    paid = models.BooleanField(default=True)
+
 def __str__(self):
     return "{}".format(self.user)
 
 
 class Email(models.Model):
+    name = models.CharField(max_length=254, default="name")
     email = models.EmailField(max_length=254)
-            
+    message = models.TextField(default="message")
+
     def __str__(self):
         return "{}".format(self.email)
