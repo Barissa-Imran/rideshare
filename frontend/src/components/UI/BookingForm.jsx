@@ -1,14 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../styles/booking-form.css";
 import { Form, FormGroup } from "reactstrap";
 import { Autocomplete } from "@react-google-maps/api";
+import PaymentMethod from "./PaymentMethod";
+import axios from "axios";
 
 const BookingForm = () => {
-  const submitHandler = (event) => {
-    event.preventDefault();
-  };
+  const user = JSON.parse(localStorage.getItem("user"))
+  const userId = user["user_id"]
+  const [pickup, setPickup] = useState('');
+  const [dropoff, setDropoff] = useState('');
+  const [fromDate, setFromdate] = useState('');
+  const [ToDate, setTodate] = useState('');
+  const [result, setResult] = useState();
+
+  const submitBooking = e => {
+    e.preventDefault();
+
+    axios.post('/api/rental/', {
+      user: userId,
+      pickup_location: pickup,
+      drop_off_address: dropoff,
+      car_model: 'Toyota Aventador',
+      from_date: fromDate,
+      to_date: ToDate
+    })
+      .then(response => {
+        setResult(response.data)
+        window.location.href = response.data
+      })
+      .catch(error => {
+        alert(error.message)
+      })
+  }
+
   return (
-    <Form onSubmit={submitHandler}>
+    <Form onSubmit={submitBooking} method="POST">
       <FormGroup className="booking__form d-inline-block me-4 mb-4">
         <input type="text" placeholder="First Name" />
       </FormGroup>
@@ -24,10 +51,10 @@ const BookingForm = () => {
       </FormGroup>
 
       <FormGroup className="booking__form d-inline-block me-4 mb-4">
-        <input type="text" placeholder="From Address" />
+        <input type="text" placeholder="From Address" name="pickup_address" onChange={e => setPickup(e.target.value)} />
       </FormGroup>
       <FormGroup className="booking__form d-inline-block ms-1 mb-4">
-        <input type="text" placeholder="To Address" />
+        <input type="text" placeholder="To Address" onChange={e => setDropoff(e.target.value)} />
       </FormGroup>
 
       <FormGroup className="booking__form d-inline-block me-4 mb-4">
@@ -50,7 +77,10 @@ const BookingForm = () => {
       </FormGroup>
 
       <FormGroup className="booking__form d-inline-block me-4 mb-4">
-        <input type="date" placeholder="Journey Date" />
+        <input type="date" placeholder="Journey Date" onChange={e => setFromdate(e.target.value)} />
+      </FormGroup>
+      <FormGroup className="booking__form d-inline-block me-4 mb-4">
+        <input type="date" placeholder="To Date" onChange={e => setTodate(e.target.value)} />
       </FormGroup>
       <FormGroup className="booking__form d-inline-block ms-1 mb-4">
         <input
@@ -67,6 +97,10 @@ const BookingForm = () => {
           className="textarea"
           placeholder="Write"
         ></textarea>
+      </FormGroup>
+      <FormGroup>
+        <h5 className="mb-4 fw-bold ">Payment Information</h5>
+        <PaymentMethod result={result}/>
       </FormGroup>
     </Form>
   );

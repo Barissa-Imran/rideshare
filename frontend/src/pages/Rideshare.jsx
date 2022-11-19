@@ -3,6 +3,8 @@ import { Placeholder } from "reactstrap";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Form, Col, FormGroup, Row, Input, ButtonGroup } from "reactstrap";
 import { FaTimes, FaLocationArrow, } from "react-icons/fa"
+import TripModal from "../components/UI/TripModal";
+import axios from 'axios';
 
 import {
     useJsApiLoader,
@@ -30,12 +32,14 @@ const Test2 = (args) => {
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
 
-    const toggle = () => setModal(!modal);
+    const [message, setMessage] = useState("");
 
     /** @type React.MutableRefObject<HTMLInputElement> */
     const originRef = useRef();
     /** @type React.MutableRefObject<HTMLInputElement> */
     const destiantionRef = useRef();
+    /** @type React.MutableRefObject<HTMLInputElement> */
+    const userRef = useRef();
 
     if (!isLoaded) {
         return (
@@ -51,7 +55,10 @@ const Test2 = (args) => {
         )
     }
 
+
+
     async function calculateRoute() {
+        console.log(originRef.current.value)
         if (origin === '' || destination === '') {
             return
         }
@@ -69,7 +76,7 @@ const Test2 = (args) => {
 
     }
     let newdistance = distance.replace(/\D/g, '');
-    const price = newdistance * 4;
+    const price = newdistance * 2.70;
     function clearRoute() {
         setDirectionsResponse(null)
         setDistance('')
@@ -78,11 +85,26 @@ const Test2 = (args) => {
         destiantionRef.current.value = ''
     }
 
+    const user = JSON.parse(localStorage.getItem("user"))
+    const userId = user["user_id"]
+
     const handleSubmit = e => {
         e.preventDefault();
-        // const origin = e.target.pickup.value;
-        // const destination = e.target.destination.value;
-        alert("Driver arriving shortly")
+
+        axios.post('/api/trips/', {
+            rider: userId,
+            pick_up_address: origin,
+            drop_off_address: destination,
+            price: price,
+        })
+        .then(response=> {
+            alert("Driver arriving shortly")
+            setMessage("Driver will be arriving shortly");
+        })
+        .catch(error=> {
+            alert("Error! fill in the form to continue.")
+            console.log(error)
+        })
     }
 
 
@@ -91,14 +113,17 @@ const Test2 = (args) => {
 
             <div className="p-4 m-4 bg-white " style={{ zIndex: "1" }}>
 
-                <Form className="p-2" onSubmit={handleSubmit}>
+                <Form className="p-2" onSubmit={handleSubmit} method="POST">
+
                     <Row>
                         <Col md={6}>
                             <FormGroup>
+                                <Input name="rider" ref={userRef} hidden value={userId}></Input>
                                 <Autocomplete>
                                     <Input
                                         id="pickup"
-                                        name="pickup"
+                                        name="pick_up_address"
+                                        type="text"
                                         placeholder="Search pick-up location"
                                         onChange={e => setOrigin(e.target.value)}
                                         ref={originRef}
@@ -111,7 +136,8 @@ const Test2 = (args) => {
                                 <Autocomplete>
                                     <Input
                                         id="destination"
-                                        name="destination"
+                                        name="drop_off_address"
+                                        type="text"
                                         placeholder="Destination"
                                         onChange={e => setDestination(e.target.value)}
                                         ref={destiantionRef}
@@ -123,13 +149,13 @@ const Test2 = (args) => {
                     <div className="d-flex justify-content-between">
                         <p>Distance: {distance}</p>
                         <p>Duration: {duration}</p>
-                        <p>Price: {price}</p>
+                        <p>Price: ${price}</p>
                     </div>
                     <ButtonGroup>
                     <Button className="btn-sm" type="button" onClick={calculateRoute}>Calculate Route</Button>
                     <Button className="btn-sm btn-danger" type="button" onClick={clearRoute}>Clear</Button>
                     </ButtonGroup>
-                    <Button className="btn-sm mx-4" color="primary" onClick={handleSubmit}>Confirm</Button>
+                    <Button className="btn-sm mx-4" color="primary" type="submit">Confirm</Button>
                 </Form>
 
             </div>
