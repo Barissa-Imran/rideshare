@@ -39,13 +39,14 @@ export const AuthProvider = ({ children }) => {
       setAuthTokens(data);
       setUser(jwt_decode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
+      localStorage.setItem("user", JSON.stringify(jwt_decode(data.access)));
       navigate('/home');
       alert("Redirecting to home page!");
     } else {
       alert("Something went wrong!");
     }
   };
- 
+
   const registerUser = async (username, password1,password2) => {
     const response = await fetch("http://127.0.0.1:8000/api/sign_up/", {
       method: "POST",
