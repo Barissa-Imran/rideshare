@@ -18,23 +18,6 @@ class SignUpView(generics.CreateAPIView):
 class LogInView(TokenObtainPairView):
     serializer_class = LogInSerializer
 
-
-# class TripView(viewsets.ReadOnlyModelViewSet):
-#     lookup_field = 'id'
-#     lookup_url_kwarg = 'trip_id'
-#     permission_classes = (permissions.IsAuthenticated,)
-#     serializer_class = NestedTripSerializer
-
-#     def get_queryset(self):
-#         user = self.request.user
-#         if user.group == 'driver':
-#             return Trip.objects.filter(
-#                 Q(status=Trip.REQUESTED) | Q(driver=user)
-#             )
-#         if user.group == 'rider':
-#             return Trip.objects.filter(rider=user)
-#         return Trip.objects.none()
-
 class TripView(APIView):
     """
     List all Trips, or create a new trip.
@@ -44,8 +27,9 @@ class TripView(APIView):
         serializer = TripSerializer(trips, many=True)
         return Response(serializer.data)
 
-    def post(self, request, format=None):
-        serializer = TripSerializer
+    def post(self, request, format=None, *args, **kwargs):
+        serializer = TripSerializer(data=request.data)
+        print(request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
