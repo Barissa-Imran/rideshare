@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Rental, Email
-from rest_framework import  permissions, viewsets
+from rest_framework import  generics, permissions, viewsets, status
 from .serializers import RentalSerializer , EmailSerializer
 from django.core.mail import send_mail
 from django.conf import settings
