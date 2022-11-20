@@ -18,12 +18,12 @@ const CarListing = () => {
                 <span className=" d-flex align-items-center gap-2">
                   <i class="ri-sort-asc"></i> Sort By
                 </span>
+
                 <select>
                   <option>Select</option>
                   <option value="low">Low to High</option>
                   <option value="high">High to Low</option>
                 </select>
-      
               </div>
             </Col>
 

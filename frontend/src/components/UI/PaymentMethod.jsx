@@ -1,10 +1,36 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useState } from "react";
 
 import masterCard from "../../assets/all-images/master-card.jpg";
 import paypal from "../../assets/all-images/paypal.jpg";
 import "../../styles/payment-method.css";
 
-const PaymentMethod = () => {
+function PaymentMethod(props) {
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get("success")) {
+      console.log("Order placed! You will receive an email confirmation.");
+    }
+
+    if (query.get("canceled")) {
+      console.log(
+        "Order canceled -- continue to shop around and checkout when you're ready."
+      );
+    }
+  }, []);
+
+  const isLoading = () => {
+    if (props.result) {
+      return true
+    }
+    return false
+  }
+
+  const loading = isLoading();
+
+
   return (
     <>
       <div className="payment">
@@ -35,10 +61,11 @@ const PaymentMethod = () => {
         <img src={paypal} alt="" />
       </div>
       <div className="payment text-end mt-5">
-        <button>Reserve Now</button>
+        {/* <button onClick={redirectToCheckout} disabled={isLoading}>{isLoading ? "Loading..." : "Reserve Now"}</button> */}
+        <button type="submit" disabled={loading} >{loading ? "Loading..." : "Reserve Now"}</button>
       </div>
     </>
   );
-};
+}
 
 export default PaymentMethod;

@@ -8,8 +8,8 @@ from django.shortcuts import reverse
 
 class User(AbstractUser):
     photo = models.ImageField(upload_to='photos', null=True, blank=True)
-   
-  
+
+
     @property
     def group(self):
         groups = self.groups.all()
@@ -49,7 +49,8 @@ class Trip(models.Model):
         on_delete=models.DO_NOTHING,
         related_name='trips_as_rider'
     )
-    paid = models.BooleanField()
+    price = models.FloatField(default=0.0)
+    paid = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.id}'

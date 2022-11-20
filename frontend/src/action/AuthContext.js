@@ -39,13 +39,14 @@ export const AuthProvider = ({ children }) => {
       setAuthTokens(data);
       setUser(jwt_decode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
+      localStorage.setItem("user", JSON.stringify(jwt_decode(data.access)));
       navigate('/home');
       alert("Redirecting to home page!");
     } else {
       alert("Something went wrong!");
     }
   };
- 
+
   const registerUser = async (username, password1,password2) => {
     const response = await fetch("http://127.0.0.1:8000/api/sign_up/", {
       method: "POST",
@@ -66,33 +67,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-
-
-  const rentCar = async (email, car_model, pickup_location, from_date, to_date) => {
-    const response = await fetch("http://127.0.0.1:8000/api/rental/", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${authTokens.access}`
-      },
-      body: JSON.stringify({
-        email,
-        car_model,  
-        pickup_location,
-        from_date,
-        to_date,
-      })
-    });
-    if (response.status === 201) {
-      navigate('/');
-      alert("Redirecting to Home page!");
-    } else {
-      console.log(`Bearer ${authTokens.access}`)
-      alert("Something went wrong!");
-    }
-  };
-
-
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
@@ -107,12 +81,7 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens,
     registerUser,
     loginUser,
-
-    
-
-    logoutUser,
-    rentCar
-
+    logoutUser
   };
 
   useEffect(() => {
