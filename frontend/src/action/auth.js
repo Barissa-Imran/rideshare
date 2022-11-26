@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
@@ -27,11 +28,11 @@ export const load_user = () => async dispatch => {
                 'Authorization': `JWT ${localStorage.getItem('access')}`,
                 'Accept': 'application/json'
             }
-        }; 
+        };
 
         try {
             const res = await axios.get('{}/api/log_in/'.format(REACT_APP_API_URL), config);
-    
+
             dispatch({
                 type: USER_LOADED_SUCCESS,
                 payload: res.data
@@ -55,7 +56,7 @@ export const checkAuthenticated = () => async dispatch => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
-        }; 
+        };
 
         const body = JSON.stringify({ token: localStorage.getItem('access') });
 
@@ -177,25 +178,26 @@ export const reset_password = (email) => async dispatch => {
     }
 };
 
-export const reset_password_confirm = (uid, token, new_password, re_new_password) => async dispatch => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
+export const reset_password_confirm = ( token, password, re_new_password) => {
 
-    const body = JSON.stringify({ uid, token, new_password, re_new_password });
+    const body = JSON.stringify({token, password, re_new_password });
+    console.log(body);
 
     try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/reset_password_confirm/`, body, config);
+        axios.post(
+          "/api/auth/users/reset_password/confirm/",
+          body,
+        ).then(response => {
+            alert("Password reset succeful.")
+            Navigate("/login");
+        })
+        .catch(error => {
+            alert(`Oops! Something went wrong. ${error.message}`)
+        })
 
-        dispatch({
-            type: PASSWORD_RESET_CONFIRM_SUCCESS
-        });
+
     } catch (err) {
-        dispatch({
-            type: PASSWORD_RESET_CONFIRM_FAIL
-        });
+        alert("Failed! contact admin")
     }
 };
 

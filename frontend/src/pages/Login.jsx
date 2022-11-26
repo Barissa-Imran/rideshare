@@ -11,7 +11,7 @@ const Login = () => {
         const password = e.target.password.value;
         username.length > 0 && loginUser(username, password);
     }
-    
+
     return (
         <div className='container mt-5'>
             <h1>Sign In</h1>
@@ -36,6 +36,9 @@ const Login = () => {
                     />
                 </div>
                 <br/>
+                <p >
+                    <Link className='text-decoration-none' to='/reset-password'>Forgot password?</Link>
+                </p>
                 <button className='btn btn-primary' type='submit'>Login</button>
                 </form>
 

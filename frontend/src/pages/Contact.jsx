@@ -44,7 +44,7 @@ const Contact = () => {
       alert("Your message has been sent successfully!")
     })
     .catch(error => {
-      alert(error.message)
+      alert("Please fill in the form to continue!")
     })
   }
 
@@ -83,16 +83,16 @@ const Contact = () => {
               <div className="contact__info">
                 <h6 className="fw-bold">Contact Information</h6>
                 <p className="section__description mb-0">
-                  123 South pole
+                  Denton of Texas
                 </p>
                 <div className=" d-flex align-items-center gap-2">
                   <h6 className="fs-6 mb-0">Phone:</h6>
-                  <p className="section__description mb-0">+0000000</p>
+                  <a className="section__description mb-0" href="tel:+1 (940) 758-4883">+1 (940) 758-4883</a>
                 </div>
 
                 <div className=" d-flex align-items-center gap-2">
                   <h6 className="mb-0 fs-6">Email:</h6>
-                  <p className="section__description mb-0">example@gmail.com</p>
+                  <a className="section__description mb-0" href="mailto:sairam61099@gmail.com">sairam61099@gmail.com</a>
                 </div>
 
                 <h6 className="fw-bold mt-4">Follow Us</h6>

@@ -16,6 +16,7 @@ import Activate from "../pages/Activate";
 import Rideshare from "../pages/Rideshare";
 import Success from "../pages/Success";
 import Cancel from "../pages/Cancel";
+import Profile from "../pages/Profile";
 
 const Routers = () => {
   return (
@@ -84,14 +85,7 @@ const Routers = () => {
           </PrivateRoute>
         }
       />
-      <Route
-        path="*"
-        element={
-          <PrivateRoute>
-            <NotFound />
-          </PrivateRoute>
-        }
-      />
+      <Route path="*" element={<NotFound />} />
       <Route
         path="/rideshare"
         element={
@@ -116,6 +110,12 @@ const Routers = () => {
           </PrivateRoute>
         }
       />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route
+        path="/reset-password-confirm/:token"
+        element={<ResetpasswordConfirm />}
+      />
+      <Route path="/profile" element={<Profile/>} />
     </Routes>
   );
 };

@@ -32,17 +32,17 @@ const About = () => {
                 </h2>
 
                 <p className="section__description">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Eveniet veniam assumenda aperiam accusantium ex autem
-                  perferendis repellendus nostrum delectus. Nemo et dolore est
-                  tempore rem minima adipisci magni dolorum ipsam.
+                  We want you to move freely, make the most of your time, and be connected to the people and places
+                  that matter most to you. That’s why we are committed to safety, from the creation of new standards
+                  to the development of technology with the aim of reducing incidents.
                 </p>
 
                 <p className="section__description">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Eveniet veniam assumenda aperiam accusantium ex autem
-                  perferendis repellendus nostrum delectus. Nemo et dolore est
-                  tempore rem minima adipisci magni dolorum ipsam.
+                  Share your trip details with loved ones. Track your trip during your ride.
+                  Our technology helps put peace of mind at your fingertips.
+                  Millions of riders and drivers share a set of Community Guidelines, holding each other
+                  accountable to do the right thing. A specially trained team is available 24/7. Reach
+                  them in the app, day or night, with any questions or safety concerns.
                 </p>
 
                 <div className=" d-flex align-items-center gap-3 mt-4">
@@ -52,7 +52,7 @@ const About = () => {
 
                   <div>
                     <h6 className="section__subtitle">Need Any Help?</h6>
-                    <h4>+00123456789</h4>
+                    <h4>+1 (940) 758-4883</h4>
                   </div>
                 </div>
               </div>

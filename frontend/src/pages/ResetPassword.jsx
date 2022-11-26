@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { reset_password } from '../action/auth';
+import { useNavigate } from 'react-router-dom';
+// import { connect } from 'react-redux';
+// import { reset_password } from '../action/auth';
+import axios from 'axios';
 
-const ResetPassword = ({ reset_password }) => {
+const ResetPassword = () => {
     const [requestSent, setRequestSent] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: ''
     });
@@ -13,15 +17,41 @@ const ResetPassword = ({ reset_password }) => {
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    const reset_password = (email) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const body = JSON.stringify({ email });
+
+        try {
+            axios.post('api/auth/users/reset_password/', body, config).then(response => {
+               alert("An email has been sent with instructions on how to reset your password!")
+               navigate("/login");
+            })
+                .catch(error => {
+                    alert("Your email might not exist in our database, please try again!")
+                    console.log(error)
+                })
+        } catch (err) {
+            console.log({
+                type: 'PASSWORD_RESET_FAIL'
+            });
+        }
+    };
+
     const onSubmit = e => {
         e.preventDefault();
 
+        setIsLoading(true)
         reset_password(email);
         setRequestSent(true);
     };
 
     if (requestSent) {
-        return <Navigate to='/' />
+        //return Navigate to='/reset-password-done' />
     }
 
     return (
@@ -39,10 +69,10 @@ const ResetPassword = ({ reset_password }) => {
                         required
                     />
                 </div>
-                <button className='btn btn-primary' type='submit'>Reset Password</button>
+                <button className='btn btn-primary my-2' type='submit'>{ isLoading ? "Sending..." :"Reset Password"}</button>
             </form>
         </div>
     );
 };
 
-export default connect(null, { reset_password })(ResetPassword);
+export default ResetPassword;
