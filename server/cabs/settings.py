@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'channels',
     'crispy_forms',
     'corsheaders',
+    'django_rest_passwordreset',
 
     # my apps
     # 'base',
@@ -130,29 +131,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 CORS_ALLOW_ALL_ORIGINS = True
-
-
-
-CORS_ALLOW_HEADERS = [
-    "authentication",
-    "authorization",
-    "content-type",
-    "origin",
-    "accept",
-    "accept-encoding",
-    "dnt",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
@@ -220,8 +204,8 @@ SIMPLE_JWT = {
 # Email configuration settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = os.getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False

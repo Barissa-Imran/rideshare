@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import store from "./store";
 import { AuthProvider } from "./action/AuthContext";
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,7 +16,6 @@ root.render(
   <React.StrictMode>
       <Router>
       <AuthProvider>
-        {/* <Component isComponent={true} /> */}
         <App />
         </AuthProvider>
       </Router>

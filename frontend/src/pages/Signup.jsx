@@ -6,14 +6,15 @@ import AuthContext from '../action/AuthContext';
 const Signup = () => {
 
     const [username, setUsername]  = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
     const {registerUser} = useContext(AuthContext);
-    
+
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log(e.target.value)
-        registerUser(username, password1,password2);
+        registerUser(username, email, phone, password1,password2);
     };
   return (
     <div className='container mt-5'>
@@ -32,10 +33,34 @@ const Signup = () => {
             />
         </div>
         <br />
+              <div className='form-group'>
+                  <input
+                      className='form-control'
+                      type='email'
+                      id='email'
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder='email*'
+                      name='email'
+                      required
+                  />
+              </div>
+        <br />
+              <div className='form-group'>
+                  <input
+                      className='form-control'
+                      type='tel'
+                      id='phone'
+                      onChange={e => setPhone(e.target.value)}
+                      placeholder='Phone'
+                      name='phone'
+                    //   required
+                  />
+              </div>
+              <br />
         <div className='form-group'>
             <input
                 className='form-control'
-                type='password1'
+                type='password'
                 id='password1'
                 placeholder='Password*'
                 onChange={e => setPassword1(e.target.value)}
@@ -54,13 +79,16 @@ const Signup = () => {
             />
             <p>{password2 !== password1 ? "Passwords do not match" : ""}</p>
         </div>
-        <br />
+        <div>
+            <input type="checkbox" id="rider" name="rider" value="True"/>{' '}
+            <label for="rider">Become a rider</label>
+        </div>
         <br />
         <button className='btn btn-primary' type='submit'>Register</button>
     </form>
-   
+
     <br />
-   
+
     <p className='mt-3'>
         Already have an account? <Link to='/login'>Sign In</Link>
     </p>

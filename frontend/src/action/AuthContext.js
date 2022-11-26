@@ -47,7 +47,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const registerUser = async (username, password1,password2) => {
+  const registerUser = async (username, email, phone, password1,password2) => {
+    console.log(email)
     const response = await fetch("http://127.0.0.1:8000/api/sign_up/", {
       method: "POST",
       headers: {
@@ -55,6 +56,8 @@ export const AuthProvider = ({ children }) => {
       },
       body: JSON.stringify({
         username,
+        email,
+        phone,
         password1,
         password2
       })
