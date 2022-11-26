@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import Rental, Email
 
-
 class RentalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rental

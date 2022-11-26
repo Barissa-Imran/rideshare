@@ -21,6 +21,7 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from trips.views import SignUpView, LogInView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +30,6 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/trips/', include('trips.urls', 'trips',)),
     path('api/rental/', include('rental.urls', 'rental',)),
+    path("api/auth/users/reset_password/",
+         include('django_rest_passwordreset.urls', namespace='password_reset')),
 ]

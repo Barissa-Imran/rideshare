@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Rental, Email
-from rest_framework import  generics, permissions, viewsets, status
+from rest_framework import  permissions, viewsets
 from .serializers import RentalSerializer , EmailSerializer
 from django.core.mail import send_mail
 from django.conf import settings
@@ -19,6 +19,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 class StripeCheckouView(APIView):
     def post(self, request):
         try:
+            pricing_session = stripe.Price.create
             checkout_session = stripe.checkout.Session.create(
                 line_items=[
                     {

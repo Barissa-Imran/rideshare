@@ -9,6 +9,8 @@ from .models import Trip
 class UserSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
+    email = serializers.EmailField(write_only=True)
+    phone = serializers.IntegerField(write_only=True, required=False)
     group = serializers.CharField(default='rider')
 
     def validate(self, data):
@@ -17,6 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
+        print(validated_data)
         group_data = validated_data.pop('group')
         group, _ = Group.objects.get_or_create(name=group_data)
         data = {
@@ -32,7 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = (
-            'id', 'username', 'password1', 'password2',
+            'id', 'username','email', 'phone', 'password1', 'password2',
             'first_name', 'last_name', 'group',
             'photo',
         )
