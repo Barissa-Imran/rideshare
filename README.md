@@ -1,75 +1,65 @@
-Install django in your system (run the command pip install django)
+# Rideshare
 
-Download the zip file from github and extract it or clone the repo. 
+Welcome to our cab hailing and car rental website! This website has been built using React for the frontend and Django for the backend.
 
-Open the extracted files in your code editor.
+The website allows users to easily book a cab or rent a car for their transportation needs. Users can search for available vehicles, view details and prices, and make a booking or rental request in just a few clicks.
 
-Open the editor`s terminal and run python manage.py runserver or open the command prompt and navigate the files location say(C:\Users\username\OneDrive\Desktop\projects\cabs>) and run python manage.py runserver
+The website features a user-friendly and intuitive interface that makes it easy to navigate and find the information you need. The website also has a built-in map view that shows the location of available vehicles, so you can see exactly where they are and how close they are to your pickup location.
 
-open your browser and navigate to this url -- http://127.0.0.1:8000
-To view the admin module -- http://127.0.0.1:8000
+The website also includes an admin panel, which allows administrator to manage the vehicles and bookings. The administrator can view all the details of the vehicles and the bookings, and make changes as necessary.
 
-username = admin
-password = admin
+I have also implemented a payment gateway to make the payment process easy and secure for the customers.
 
-Note : The above steps are for a windows machine. For other Operating systems, the commands are almost similar eg use python3 instead of just python
+We have used Django REST framework for the backend, which allows for easy communication between the frontend and backend, and ensures that the website is fast and responsive.
 
-Go to settings.py and edit the following fields 
-EMAIL_HOST_USER = 'email address to be used to sending reset password emails '
-EMAIL_HOST_PASSWORD = 'password'
-For the EMAIL_HOST_PASSWORD field go to -- support.google.com/accounts/answer/185833 -- and follow the instructions to generate the password.
+Overall, this website is designed to provide a seamless and convenient experience for booking a cab or rental car, and we hope you find it useful.
 
-Run the code and create an account  with an active email account and try to reset the password.
+## Built With
 
-If you don`t receive a reset password email, -- https://myaccount.google.com/lesssecureapps
+- [React.Js](https://beta.reactjs.org)
+- [Django Rest-Framework](https://www.django-rest-framework.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Stripe](https://stripe.com)
+- [Google Maps API](https://console.cloud.google.com/google/maps-apis/)
 
-# Starting the Frontend of the project
+## Live
+- [Coming-Soon](link)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![image](https://user-images.githubusercontent.com/74467681/213913537-48dfda89-90d0-46eb-8a18-81ace02a80f7.png)
 
-## Available Scripts
+## Getting started
+To get a local copy up and running:
 
-In the frontend directory, you can run:
+```
+$ Fork the repository
+$ git clone https://github.com/YourUsername/Rideshare.git
+$ git checkout -b branch-name
+$ git remote add upstream https://github.com/Barissa-Imran/Rideshare
+$ git pull upstream main
+$ git commit -m "commit message"
+$ git push -u origin HEAD
+```
+To Compile Locally:
+```
+$ npm install
+$ npm run dev
+```
 
-### `npm install`
-It installs all the packages in package.json
+## Author
+:bust_in_silhouette: Author
+- GitHub: [@Barissa-Imran](https://github.com/Barissa-Imran)
+- Twitter: [@BImran_Dev](https://twitter.com/BImran_Dev)
+_________________________________________________________________
+- Github: [@Collins-Omariba](https://github.com/Collins-Omariba)
+- Website: [CollinsOmariba](https://collins-omariba.github.io/)
 
-### `npm start`
+## :handshake: Contribution
+Contributions, issues and feature requests are welcome!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Feel free to check the [issue page](https://github.com/Barissa-Imran/rideshare/issues)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Show your support
+Give a :star: if you like this project!
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
+## Acknowledgement
+Various documentations
